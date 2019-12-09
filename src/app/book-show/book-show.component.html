@@ -1,5 +1,5 @@
-<mat-card>
-  <img mat-card-lg-image [src]="getCorrectBase64(book.screen)" [alt]="book.title">
+<mat-card *ngIf="book">
+  <img mat-card-lg-image [src]="book.screen" [alt]="book.title">
 
   <mat-card-title>
     {{ book.title }}
@@ -12,4 +12,6 @@
   <mat-card-content>
     {{ book.description }}
   </mat-card-content>
+
+  <button mat-button (click)="bookService.remove(book.uid)" color="warn">Delete</button>
 </mat-card>

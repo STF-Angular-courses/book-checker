@@ -1,22 +1,25 @@
 import { Component } from '@angular/core';
 import { BookModel } from '../models/book.model';
+import { BookService } from './common/services/book.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: [ './app.component.scss' ]
+  styleUrls: [ './app.component.scss' ],
 })
 export class AppComponent {
   activeList = true;
-  book: BookModel | null = null;
+  bookId: number | null = null;
 
-  showBook(book: BookModel): void {
-    this.book = book;
+  constructor(private bookService: BookService) {}
+
+  showBook(id: number): void {
+    this.bookId = id;
     this.activeList = false;
   }
 
   backToList(): void {
-    this.book = null;
+    this.bookId = null;
     this.activeList = true;
   }
 }

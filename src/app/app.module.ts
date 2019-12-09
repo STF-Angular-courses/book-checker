@@ -7,6 +7,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BookItemComponent } from './book-item/book-item.component';
 import { MatButtonModule, MatCardModule, MatListModule } from '@angular/material';
 import { BookShowComponent } from './book-show/book-show.component';
+import { BookService } from './common/services/book.service';
+import { Base64Service } from './common/services/base64.service';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,10 @@ import { BookShowComponent } from './book-show/book-show.component';
     MatListModule,
     MatButtonModule
   ],
-  providers: [],
+  providers: [
+    BookService,
+    Base64Service,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

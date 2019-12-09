@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { BookService } from '../common/services/book.service';
 import { BookModel } from '../../models/book.model';
 
 @Component({
@@ -6,11 +7,11 @@ import { BookModel } from '../../models/book.model';
   templateUrl: './book-show.component.html',
 })
 export class BookShowComponent {
-  constructor() { }
+  constructor(private bookService: BookService) { }
 
-  @Input() book: BookModel;
+  @Input() bookId: number;
 
-  getCorrectBase64(base64: string): string {
-    return `data:image/jpeg;base64,${base64}`;
+  get book(): BookModel {
+    return this.bookService.books.find((book) => book.uid === this.bookId);
   }
 }
