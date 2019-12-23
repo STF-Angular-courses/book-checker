@@ -1,16 +1,24 @@
 <mat-card *ngIf="book">
-  <img mat-card-lg-image [src]="book.screen" [alt]="book.title">
+  <img mat-card-lg-image [src]="book.screen | base64" [alt]="book.title">
 
   <mat-card-title>
-    {{ book.title }}
+    {{ book.title | uppercase | slice:2:5 }}
   </mat-card-title>
 
   <mat-card-subtitle>
-    {{ book.author }}
+    {{ book.author | author:true | lowercase }}
   </mat-card-subtitle>
 
   <mat-card-content>
     {{ book.description }}
+  </mat-card-content>
+
+  <mat-card-content>
+    {{ book.progress | number:'1.2-2' }}
+  </mat-card-content>
+
+  <mat-card-content>
+    {{ book.date | date:'d y' }}
   </mat-card-content>
 
   <button mat-button (click)="bookService.remove(book.uid)" color="warn">Delete</button>

@@ -8,7 +8,8 @@ import { BookItemComponent } from './book-item/book-item.component';
 import { MatButtonModule, MatCardModule, MatListModule } from '@angular/material';
 import { BookShowComponent } from './book-show/book-show.component';
 import { BookService } from './common/services/book.service';
-import { Base64Service } from './common/services/base64.service';
+import { Base64Pipe } from './common/pipes/base64.pipe';
+import { AuthorPipe } from './common/pipes/author.pipe';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,8 @@ import { Base64Service } from './common/services/base64.service';
     BookListComponent,
     BookItemComponent,
     BookShowComponent,
+    Base64Pipe,
+    AuthorPipe,
   ],
   imports: [
     BrowserModule,
@@ -26,7 +29,6 @@ import { Base64Service } from './common/services/base64.service';
   ],
   providers: [
     BookService,
-    Base64Service,
   ],
   bootstrap: [AppComponent]
 })
