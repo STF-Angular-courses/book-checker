@@ -2,7 +2,8 @@ import { AuthorModel } from './author.model';
 
 export interface BookModel {
   pages: number;
-  author: AuthorModel;
+  author_name: string;
+  author_last_name: string;
   date?: Date;
   title: string;
   screen?: string;

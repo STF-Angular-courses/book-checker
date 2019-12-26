@@ -6,7 +6,7 @@ import { BookShowComponent } from './book-show/book-show.component';
 import { AuthorPipe } from './common/pipe/author.pipe';
 import { BookService } from './common/service/book.service';
 import { MatButtonModule, MatCardModule, MatListModule } from '@angular/material';
-import { ImageModule } from '../image/image.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -23,11 +23,11 @@ import { ImageModule } from '../image/image.module';
     MatCardModule,
     MatListModule,
     MatButtonModule,
-    ImageModule,
+    HttpClientModule,
   ],
   exports: [
     BookListComponent,
     BookShowComponent,
-  ]
+  ],
 })
 export class BookModule { }

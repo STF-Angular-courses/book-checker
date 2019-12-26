@@ -1,12 +1,12 @@
 <mat-card *ngIf="book">
-  <img mat-card-lg-image [src]="book.screen | base64" [alt]="book.title">
+  <img mat-card-lg-image [src]="book.screen" [alt]="book.title">
 
   <mat-card-title>
     {{ book.title | uppercase | slice:2:5 }}
   </mat-card-title>
 
   <mat-card-subtitle>
-    {{ book.author | author:true | lowercase }}
+    {{ book | author | lowercase }}
   </mat-card-subtitle>
 
   <mat-card-content>
