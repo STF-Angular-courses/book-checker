@@ -1,17 +1,14 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { BookService } from '../common/service/book.service';
-import { BookModel } from '../common/model/book.model';
+import { Observable } from 'rxjs';
+import { FullBookModel } from '../common/model/full-book.model';
+import { BookContract } from '../common/service/book/book.contract';
 
 @Component({
   selector: 'app-book-show',
   templateUrl: './book-show.component.html',
 })
 export class BookShowComponent {
-  constructor(private bookService: BookService) { }
+  constructor(private bookService: BookContract) { }
 
-  @Input() bookId: number;
-
-  get book(): BookModel {
-    return this.bookService.books.find((book) => book.uid === this.bookId);
-  }
+  @Input() book: Observable<FullBookModel>;
 }

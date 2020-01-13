@@ -1,13 +1,10 @@
-import { AuthorModel } from './author.model';
+import { FileModel } from './file.model';
 
 export interface BookModel {
-  pages: number;
-  author_name: string;
-  author_last_name: string;
-  date?: Date;
+  authorName: string;
+  authorLastName: string;
   title: string;
-  screen?: string;
-  uid: number;
+  screen?: FileModel;
+  uid: string;
   description: string;
-  progress: number;
 }

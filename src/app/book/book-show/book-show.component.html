@@ -1,25 +1,27 @@
-<mat-card *ngIf="book">
-  <img mat-card-lg-image [src]="book.screen" [alt]="book.title">
+<mat-card *ngIf="book | async as item; else loading">
+  <img mat-card-lg-image [src]="item.screen.url" [alt]="item.title">
 
   <mat-card-title>
-    {{ book.title | uppercase | slice:2:5 }}
+    {{ item.title | uppercase }}
   </mat-card-title>
 
   <mat-card-subtitle>
-    {{ book | author | lowercase }}
+    {{ item | author | lowercase }}
   </mat-card-subtitle>
 
   <mat-card-content>
-    {{ book.description }}
+    {{ item.description }}
   </mat-card-content>
 
   <mat-card-content>
-    {{ book.progress | number:'1.2-2' }}
+    {{ item.progress | number:'1.2-2' }}
   </mat-card-content>
 
   <mat-card-content>
-    {{ book.date | date:'d y' }}
+    {{ item.date | date:'d y' }}
   </mat-card-content>
-
-  <button mat-button (click)="bookService.remove(book.uid)" color="warn">Delete</button>
 </mat-card>
+
+<ng-template #loading>
+  <h2>...Loading</h2>
+</ng-template>

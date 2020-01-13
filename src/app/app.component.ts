@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { BookModel } from './book/common/model/book.model';
-import { BookService } from './book/common/service/book.service';
+import { GraphqlService } from './book/common/service/book/graphql.service';
+import { Observable } from 'rxjs';
+import { FullBookModel } from './book/common/model/full-book.model';
 
 @Component({
   selector: 'app-root',
@@ -9,17 +10,17 @@ import { BookService } from './book/common/service/book.service';
 })
 export class AppComponent {
   activeList = true;
-  bookId: number | null = null;
+  book: Observable<FullBookModel> | null = null;
 
-  constructor(private bookService: BookService) {}
+  constructor(private bookService: GraphqlService) {}
 
-  showBook(id: number): void {
-    this.bookId = id;
+  showBook(id: string): void {
+    this.book = this.bookService.get(id);
     this.activeList = false;
   }
 
   backToList(): void {
-    this.bookId = null;
+    this.book = null;
     this.activeList = true;
   }
 }

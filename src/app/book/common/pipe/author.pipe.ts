@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { AuthorModel } from '../model/author.model';
+import { FullBookModel } from '../model/full-book.model';
 import { BookModel } from '../model/book.model';
 
 @Pipe({
@@ -7,8 +7,8 @@ import { BookModel } from '../model/book.model';
 })
 export class AuthorPipe implements PipeTransform {
 
-  transform(book: BookModel): string {
-    return `${book.author_name} ${book.author_last_name}`;
+  transform(book: FullBookModel | BookModel): string {
+    return `${book.authorName} ${book.authorLastName}`;
   }
 
 }

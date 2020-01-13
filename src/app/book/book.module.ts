@@ -4,9 +4,10 @@ import { BookListComponent } from './book-list/book-list.component';
 import { BookItemComponent } from './book-item/book-item.component';
 import { BookShowComponent } from './book-show/book-show.component';
 import { AuthorPipe } from './common/pipe/author.pipe';
-import { BookService } from './common/service/book.service';
 import { MatButtonModule, MatCardModule, MatListModule } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
+import { GraphQLModule } from '../graphql.module';
+import { BookProvider } from './common/service/book/book.provider';
 
 @NgModule({
   declarations: [
@@ -15,15 +16,14 @@ import { HttpClientModule } from '@angular/common/http';
     BookShowComponent,
     AuthorPipe,
   ],
-  providers: [
-    BookService,
-  ],
+  providers: [ BookProvider ],
   imports: [
     CommonModule,
     MatCardModule,
     MatListModule,
     MatButtonModule,
     HttpClientModule,
+    GraphQLModule,
   ],
   exports: [
     BookListComponent,
