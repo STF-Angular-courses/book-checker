@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BookModel } from '../../model/book.model';
 import { Apollo } from 'apollo-angular';
 import { BOOKS_QUERY } from '../../query/books.query';
-import { map } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { FullBookModel } from '../../model/full-book.model';
 import { BOOK_QUERY } from '../../query/book.query';
 import { Observable } from 'rxjs';
@@ -20,8 +20,13 @@ export class GraphqlService extends BookContract {
     })
       .pipe(
         map((item) => item.data.allBooks),
+        catchError((data) => {
+          throw new Error('asdasd');
+        })
       )
-      .subscribe(items => this.books = items);
+      .subscribe(items => {
+        this.books = items;
+      });
   }
 
   get(id: string): Observable<FullBookModel> {

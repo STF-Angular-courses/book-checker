@@ -1,7 +1,11 @@
 import { BookContract } from './book.contract';
-import { GraphqlService } from './graphql.service';
+import { Apollo } from 'apollo-angular';
+import { bookProviderFactory } from './book-provider.factory';
 
 export const BookProvider = {
   provide: BookContract,
-  useClass: GraphqlService,
-}
+  useFactory: bookProviderFactory(),
+  deps: [
+    Apollo,
+  ]
+};

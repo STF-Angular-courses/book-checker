@@ -8,6 +8,7 @@ import { MatButtonModule, MatCardModule, MatListModule } from '@angular/material
 import { HttpClientModule } from '@angular/common/http';
 import { GraphQLModule } from '../graphql.module';
 import { BookProvider } from './common/service/book/book.provider';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,9 @@ import { BookProvider } from './common/service/book/book.provider';
     BookShowComponent,
     AuthorPipe,
   ],
-  providers: [ BookProvider ],
+  providers: [
+    BookProvider,
+  ],
   imports: [
     CommonModule,
     MatCardModule,
@@ -24,6 +27,7 @@ import { BookProvider } from './common/service/book/book.provider';
     MatButtonModule,
     HttpClientModule,
     GraphQLModule,
+    RouterModule,
   ],
   exports: [
     BookListComponent,

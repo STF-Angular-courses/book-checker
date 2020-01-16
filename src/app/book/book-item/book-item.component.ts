@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { BookModel } from '../common/model/book.model';
-import { GraphqlService } from '../common/service/book/graphql.service';
+import { BookContract } from '../common/service/book/book.contract';
 
 @Component({
   selector: 'app-book-item',
@@ -8,13 +8,7 @@ import { GraphqlService } from '../common/service/book/graphql.service';
   styleUrls: [ './book-item.component.scss' ]
 })
 export class BookItemComponent {
-  constructor(private bookService: GraphqlService) {}
+  constructor(private bookService: BookContract) {}
 
   @Input() book: BookModel;
-
-  @Output() giveId = new EventEmitter<string>();
-
-  openBook(id: string) {
-    this.giveId.emit(id);
-  }
 }

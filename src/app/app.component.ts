@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { GraphqlService } from './book/common/service/book/graphql.service';
 import { Observable } from 'rxjs';
 import { FullBookModel } from './book/common/model/full-book.model';
+import { BookContract } from './book/common/service/book/book.contract';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +12,7 @@ export class AppComponent {
   activeList = true;
   book: Observable<FullBookModel> | null = null;
 
-  constructor(private bookService: GraphqlService) {}
+  constructor(private bookService: BookContract) {}
 
   showBook(id: string): void {
     this.book = this.bookService.get(id);
