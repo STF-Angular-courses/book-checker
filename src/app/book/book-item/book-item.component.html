@@ -1,19 +1,19 @@
-<mat-card [id]="book.uid">
-  <img mat-card-md-image [routerLink]="['book', book.uid]" [src]="book.screen.url" [alt]="book.title">
+<mat-card [id]="book.id">
+  <img mat-card-md-image [routerLink]="['book', book.id]" [src]="book.screen | serverImage" [alt]="book.title">
 
   <mat-card-title>
     {{ book.title }}
   </mat-card-title>
 
-  <mat-card-subtitle>
-    {{ book | author }}
+  <mat-card-subtitle *ngIf="author | async as item">
+    {{ item | author }}
   </mat-card-subtitle>
 
   <mat-card-content>
     {{ book.description }}
   </mat-card-content>
 
-  <a [routerLink]="['/book', book.uid]" mat-button color="primary">Open</a>
+  <a [routerLink]="['/book', book.id]" mat-button color="primary">Open</a>
 
-  <button mat-button (click)="bookService.remove(book.uid)" color="warn">Delete</button>
+  <button mat-button (click)="bookService.remove(book.id)" color="warn">Delete</button>
 </mat-card>

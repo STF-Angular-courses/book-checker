@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Base64Pipe } from './common/pipe/base64.pipe';
+import { ServerImagePipe } from './common/pipe/server-image.pipe';
 
 @NgModule({
   declarations: [
-    Base64Pipe,
+    ServerImagePipe,
   ],
   imports: [
-    CommonModule
+    CommonModule,
   ],
   exports: [
-    Base64Pipe,
+    ServerImagePipe,
   ]
 })
 export class ImageModule { }

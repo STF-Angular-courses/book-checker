@@ -1,11 +1,7 @@
 import { BookContract } from './book.contract';
-import { Apollo } from 'apollo-angular';
-import { bookProviderFactory } from './book-provider.factory';
+import { ApiService } from './api.service';
 
 export const BookProvider = {
   provide: BookContract,
-  useFactory: bookProviderFactory(),
-  deps: [
-    Apollo,
-  ]
+  useClass: ApiService,
 };

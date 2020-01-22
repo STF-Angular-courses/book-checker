@@ -3,19 +3,25 @@ import { CommonModule } from '@angular/common';
 import { BookListComponent } from './book-list/book-list.component';
 import { BookItemComponent } from './book-item/book-item.component';
 import { BookShowComponent } from './book-show/book-show.component';
-import { AuthorPipe } from './common/pipe/author.pipe';
-import { MatButtonModule, MatCardModule, MatListModule } from '@angular/material';
+import { MatButtonModule, MatCardModule, MatInputModule, MatListModule, MatOptionModule, MatSelectModule } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
 import { GraphQLModule } from '../graphql.module';
 import { BookProvider } from './common/service/book/book.provider';
 import { RouterModule } from '@angular/router';
+import { BookAddComponent } from './book-add/book-add.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ImageModule } from '../image/image.module';
+import { AuthorModule } from '../author/author.module';
+import { CategoryModule } from '../category/category.module';
+import { ColorPipe } from './common/pipe/color.pipe';
 
 @NgModule({
   declarations: [
     BookListComponent,
     BookItemComponent,
     BookShowComponent,
-    AuthorPipe,
+    BookAddComponent,
+    ColorPipe,
   ],
   providers: [
     BookProvider,
@@ -28,10 +34,18 @@ import { RouterModule } from '@angular/router';
     HttpClientModule,
     GraphQLModule,
     RouterModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    ImageModule,
+    AuthorModule,
+    CategoryModule,
+    MatOptionModule,
+    MatSelectModule,
   ],
   exports: [
     BookListComponent,
     BookShowComponent,
+    BookAddComponent,
   ],
 })
 export class BookModule { }

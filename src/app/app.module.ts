@@ -5,8 +5,9 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BookModule } from './book/book.module';
 import { MatButtonModule, MatCardModule, MatListModule } from '@angular/material';
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule } from './routing/app-routing.module';
 import { MatchComponent } from './match.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [

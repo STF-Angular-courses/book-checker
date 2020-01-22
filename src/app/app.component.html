@@ -1,9 +1,5 @@
-<button mat-button color="primary" (click)="bookService.add()">
+<button [routerLink]="'add'" mat-button color="primary">
   Add book
-</button>
-
-<button *ngIf="!activeList" mat-button color="accent" (click)="backToList()">
-  Back
 </button>
 
 <mat-card>

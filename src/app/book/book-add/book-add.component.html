@@ -1,0 +1,35 @@
+<form [formGroup]="bookForm" class="example-form" (submit)="submit()">
+  <mat-form-field class="example-full-width">
+    <input matInput [formControlName]="'title'" placeholder="Title">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <textarea matInput [formControlName]="'description'" placeholder="Leave a description"></textarea>
+  </mat-form-field>
+
+  <mat-form-field *ngIf="authors | async as authorList">
+    <mat-label>Author</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let author of authorList" [value]="author.id">
+        {{ author | author }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field *ngIf="categories | async as categoryList">
+    <mat-label>Category</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let category of categoryList"  [value]="category.id">
+        {{ category.title }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput type="number" [formControlName]="'pages'" placeholder="Pages">
+  </mat-form-field>
+
+  <input type="file" [formControlName]="'screen'" placeholder="Screen">
+
+  <button mat-button type="submit" color="primary">Send</button>
+</form>
