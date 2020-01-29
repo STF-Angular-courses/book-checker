@@ -14,6 +14,8 @@ import { ImageModule } from '../image/image.module';
 import { AuthorModule } from '../author/author.module';
 import { CategoryModule } from '../category/category.module';
 import { ColorPipe } from './common/pipe/color.pipe';
+import { FormDataModule } from '../form-data/form-data.module';
+import { BookEditComponent } from './book-edit/book-edit.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,7 @@ import { ColorPipe } from './common/pipe/color.pipe';
     BookShowComponent,
     BookAddComponent,
     ColorPipe,
+    BookEditComponent,
   ],
   providers: [
     BookProvider,
@@ -41,6 +44,7 @@ import { ColorPipe } from './common/pipe/color.pipe';
     CategoryModule,
     MatOptionModule,
     MatSelectModule,
+    FormDataModule,
   ],
   exports: [
     BookListComponent,

@@ -1,0 +1,4 @@
+<div style="width: 100%; display: flex; flex-direction: column;">
+  <img mat-card-lg-image [src]="selectedImage || (value ? (value | serverImage) : defaultImage)" />
+  <input type="file" (change)="changeImage($event)">
+</div>

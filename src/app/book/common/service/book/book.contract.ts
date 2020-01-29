@@ -7,7 +7,9 @@ export abstract class BookContract {
 
   abstract get(id: number): Observable<FullBookModel>;
 
-  abstract add(): void;
+  abstract add(data: FormData): Observable<FullBookModel>;
+
+  abstract update(id: number, data: FormData): Observable<FullBookModel>;
 
   abstract remove(id: number): void;
 }

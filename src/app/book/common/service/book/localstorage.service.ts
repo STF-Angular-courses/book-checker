@@ -14,7 +14,7 @@ export class LocalstorageService extends BookContract {
     this.books = JSON.parse(localStorage.getItem('books')) as BookModel[];
   }
 
-  get(id: string): Observable<FullBookModel> {
+  get(id: number): Observable<FullBookModel> {
     const book = JSON.parse(localStorage.getItem(`book${id}`)) as FullBookModel;
 
     return of(book);
@@ -24,7 +24,7 @@ export class LocalstorageService extends BookContract {
     return;
   }
 
-  remove(id: string): void {
+  remove(id: number): void {
     return;
   }
 }

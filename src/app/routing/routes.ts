@@ -4,6 +4,7 @@ import { BookShowComponent } from '../book/book-show/book-show.component';
 import { MatchComponent } from '../match.component';
 import { testMatcher } from './matcher/test.matcher';
 import { BookAddComponent } from '../book/book-add/book-add.component';
+import { BookEditComponent } from '../book/book-edit/book-edit.component';
 
 export const routes: Routes = [
   {
@@ -17,7 +18,7 @@ export const routes: Routes = [
     children: [
       {
         path: 'book/:id',
-        component: BookShowComponent,
+        component: BookEditComponent,
       }
     ]
   },
