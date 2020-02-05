@@ -13,6 +13,9 @@ import { PreloaderDirective } from './directive/preloader.directive';
   ],
   exports: [
     PreloaderDirective,
-  ]
+  ],
+  entryComponents: [
+    PreloaderComponent,
+  ],
 })
 export class PreloaderModule { }

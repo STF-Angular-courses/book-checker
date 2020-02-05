@@ -1,5 +1,13 @@
-import { Directive, ElementRef, HostListener, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { preloader } from '../assets/preloader';
+import {
+  ComponentFactoryResolver, ComponentRef,
+  Directive,
+  ElementRef,
+  Input,
+  OnChanges,
+  SimpleChanges,
+  ViewContainerRef
+} from '@angular/core';
+import { PreloaderComponent } from '../preloader/preloader.component';
 
 @Directive({
   selector: '[appPreloader]'
@@ -8,41 +16,50 @@ export class PreloaderDirective implements OnChanges {
   @Input('appPreloader')
   private loading = false;
 
-  private overlay: HTMLElement;
+  private component: ComponentRef<PreloaderComponent>;
+  private preloaderIndex?: number;
 
   constructor(
     private element: ElementRef,
+    private viewContainerRef: ViewContainerRef,
+    private componentFactoryResolver: ComponentFactoryResolver,
   ) {
-    this.createLoader();
+    this.element.nativeElement.style.position = 'relative';
 
-    element.nativeElement.style.position = 'relative';
-    element.nativeElement.appendChild(this.overlay);
-  }
-
-  private createLoader() {
-    this.overlay = document.createElement('div');
-    this.overlay.style.display = 'none';
-    this.overlay.style.position = 'absolute';
-    this.overlay.style.top = '0';
-    this.overlay.style.left = '0';
-    this.overlay.style.zIndex = '999';
-    this.overlay.style.width = '100%';
-    this.overlay.style.minWidth = '300px';
-    this.overlay.style.height = '100%';
-    this.overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.6)';
-
-    const spinner = document.createElement('div');
-    spinner.style.position = 'absolute';
-    spinner.style.width = '200px';
-    spinner.style.height = '200px';
-    spinner.style.left = '50%';
-    spinner.style.top = '50%';
-    spinner.style.transform = 'translate(-50%, -50%)';
-    spinner.innerHTML = preloader;
-    this.overlay.appendChild(spinner);
+    this.initPreloaderComponent();
+    this.showPreloader();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.overlay.style.display = changes.loading.currentValue ? 'block' : 'none';
+    if (changes.loading.currentValue) {
+      this.showPreloader();
+
+      return;
+    }
+
+    this.hidePreloader();
+  }
+
+  private initPreloaderComponent() {
+    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(PreloaderComponent);
+    this.component = componentFactory.create(this.viewContainerRef.injector);
+  }
+
+  private showPreloader() {
+    if (Number.isInteger(this.preloaderIndex)) {
+      return;
+    }
+
+    this.viewContainerRef.insert(this.component.hostView);
+    this.preloaderIndex = this.viewContainerRef.length - 1;
+  }
+
+  private hidePreloader() {
+    if (!Number.isInteger(this.preloaderIndex) && !this.preloaderIndex) {
+      return;
+    }
+
+    this.viewContainerRef.remove(this.preloaderIndex);
+    this.preloaderIndex = undefined;
   }
 }
