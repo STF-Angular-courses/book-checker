@@ -16,6 +16,7 @@ import { CategoryModule } from '../category/category.module';
 import { ColorPipe } from './common/pipe/color.pipe';
 import { FormDataModule } from '../form-data/form-data.module';
 import { BookEditComponent } from './book-edit/book-edit.component';
+import { PreloaderModule } from '../preloader/preloader.module';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { BookEditComponent } from './book-edit/book-edit.component';
     MatOptionModule,
     MatSelectModule,
     FormDataModule,
+    PreloaderModule,
   ],
   exports: [
     BookListComponent,

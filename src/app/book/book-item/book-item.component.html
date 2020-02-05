@@ -1,6 +1,8 @@
 <mat-card [id]="book.id">
   <img mat-card-md-image [routerLink]="['book', book.id]" [src]="book.screen | serverImage" [alt]="book.title">
 
+  <div #card></div>
+
   <mat-card-title>
     {{ book.title }}
   </mat-card-title>
@@ -13,7 +15,7 @@
     {{ book.description }}
   </mat-card-content>
 
-  <a [routerLink]="['/book', book.id]" mat-button color="primary">Open</a>
+  <a [routerLink]="['/book', book.id]" color="primary">Open</a>
 
-  <button mat-button (click)="bookService.remove(book.id)" color="warn">Delete</button>
+  <button mat-button (click)="removeBook(book.id)" color="warn">Delete</button>
 </mat-card>

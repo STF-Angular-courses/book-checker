@@ -11,5 +11,5 @@ export abstract class BookContract {
 
   abstract update(id: number, data: FormData): Observable<FullBookModel>;
 
-  abstract remove(id: number): void;
+  abstract remove(id: number): Observable<void>;
 }

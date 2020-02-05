@@ -20,11 +20,15 @@ export class LocalstorageService extends BookContract {
     return of(book);
   }
 
-  add(): void {
-    return;
+  add(data: FormData): Observable<FullBookModel> {
+    return undefined;
   }
 
-  remove(id: number): void {
-    return;
+  remove(id: number): Observable<void> {
+    return undefined;
+  }
+
+  update(id: number, data: FormData): Observable<FullBookModel> {
+    return undefined;
   }
 }

@@ -11,7 +11,9 @@ import { BookIncorrectException } from '../../exception/book-incorrect.exception
 
 @Injectable()
 export class ApiService extends BookContract {
-  books: BookModel[];
+  private readonly baseUrl = 'http://localhost/api/books';
+
+  books: BookModel[] = [];
 
   constructor(
     private readonly http: HttpClient,
@@ -19,17 +21,18 @@ export class ApiService extends BookContract {
     private readonly categoryService: CategoryService,
   ) {
     super();
-    this.http.get<{ books: BookModel[] }>('http://localhost/api/books')
+    this.http.get<{ books: BookModel[] }>(this.baseUrl)
       .pipe(
         map(response => response.books),
       )
       .subscribe((items) => {
-        this.books = items;
+        window.setTimeout(() => this.books = items, 3000);
       });
   }
 
   add(data: FormData): Observable<FullBookModel> {
-    return this.http.post<BookModel>('http://localhost/api/books', data).pipe(
+    return this.http.post<BookModel>(this.baseUrl, data).pipe(
+      tap(book => this.books.push(book)),
       map(this.mapBook),
       catchError((item) => {
         throw new BookIncorrectException();
@@ -40,7 +43,7 @@ export class ApiService extends BookContract {
   update(id: number, data: FormData): Observable<FullBookModel> {
     data.append('_method', 'put');
 
-    return this.http.post<BookModel>(`http://localhost/api/books/${id}`, data).pipe(
+    return this.http.post<BookModel>(`${this.baseUrl}/${id}`, data).pipe(
       tap((book) => {
         const updatedIndex = this.books.findIndex(item => item.id === book.id);
 
@@ -59,13 +62,25 @@ export class ApiService extends BookContract {
   }
 
   get(id: number): Observable<FullBookModel> {
-    return this.http.get<BookModel>(`http://localhost/api/books/${id}`)
+    return this.http.get<BookModel>(`${this.baseUrl}/${id}`)
       .pipe(
         map(this.mapBook),
       );
   }
 
-  remove(id: number): void {
+  remove(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/${id}`)
+      .pipe(
+        tap(() => {
+          const deletedIndex = this.books.findIndex((book) => book.id === id);
+
+          if (deletedIndex < 0) {
+            return;
+          }
+
+          this.books.splice(deletedIndex, 1);
+        })
+      );
   }
 
   private mapBook: (book: BookModel) => FullBookModel = (book) => {

@@ -9,6 +9,7 @@ import { AuthorService } from '../../author/common/service/author.service';
 import { FormDataService } from '../../form-data/common/service/form-data.service';
 import { BookContract } from '../common/service/book/book.contract';
 import { ValidationException } from '../common/exception/validation.exception';
+import { ActivatedRoute, Route, Router, RouterEvent, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-book-add',
@@ -29,6 +30,7 @@ export class BookAddComponent implements OnInit {
     private authorService: AuthorService,
     private formDataService: FormDataService,
     private bookService: BookContract,
+    private router: Router,
   ) {
     this.bookForm = formBuilder.group({
       title: new FormControl('', [Validators.required]),
@@ -49,7 +51,11 @@ export class BookAddComponent implements OnInit {
 
     const result = this.bookService.add(data);
     result.subscribe(
-      (response) => console.log(response),
+      (response) => {
+        console.log(response);
+
+        this.router.navigate(['books/book', response.id]);
+      },
       err => {
         if (err instanceof ValidationException) {
           console.log('some action', err.getErrors().length);

@@ -1,7 +1,7 @@
 <h1>Book List</h1>
 
 
-<div style="display: flex; flex-wrap: nowrap;">
+<div style="display: flex; flex-wrap: nowrap;" [appPreloader]="!bookService.books.length">
   <div style="width: 100%">
     <app-book-item *ngFor="let book of bookService.books" [book]="book"></app-book-item>
   </div>
