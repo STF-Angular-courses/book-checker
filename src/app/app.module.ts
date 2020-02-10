@@ -7,7 +7,6 @@ import { BookModule } from './book/book.module';
 import { MatButtonModule, MatCardModule, MatListModule } from '@angular/material';
 import { AppRoutingModule } from './routing/app-routing.module';
 import { MatchComponent } from './match.component';
-import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
