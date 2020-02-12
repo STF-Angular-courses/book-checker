@@ -1,26 +1,34 @@
-<mat-card *ngIf="book | async as item; else loading">
-  <img mat-card-lg-image [src]="item.screen | serverImage" [alt]="item.title">
+<div *ngIf="book | async as item; else loading">
+  <mat-card>
+    <img mat-card-lg-image [src]="item.screen | serverImage" [alt]="item.title">
 
-  <mat-card-title>
-    {{ item.title | uppercase }}
-  </mat-card-title>
+    <mat-card-title>
+      {{ item.title | uppercase }}
+    </mat-card-title>
 
-  <mat-card-subtitle *ngIf="item.author | async as author">
-    {{ author | author | lowercase }}
-  </mat-card-subtitle>
+    <mat-card-subtitle *ngIf="item.author | async as author">
+      {{ author | author | lowercase }}
+    </mat-card-subtitle>
 
-  <mat-card-subtitle *ngIf="item.category | async as category">
-    <span [style.color]="category.color">{{ category.title | uppercase }}</span>
-  </mat-card-subtitle>
+    <mat-card-subtitle *ngIf="item.category | async as category">
+      <span [style.color]="category.color">{{ category.title | uppercase }}</span>
+    </mat-card-subtitle>
 
-  <mat-card-content>
-    {{ item.description }}
-  </mat-card-content>
+    <mat-card-content>
+      {{ item.description }}
+    </mat-card-content>
 
-  <mat-card-content>
-    {{ item.created_at }}
-  </mat-card-content>
-</mat-card>
+    <mat-card-content>
+      <strong>Pages: {{ item.pages }}</strong>
+    </mat-card-content>
+
+    <mat-card-content>
+      {{ item.created_at }}
+    </mat-card-content>
+  </mat-card>
+
+  <app-change-progress [book]="item"></app-change-progress>
+</div>
 
 <ng-template #loading>
   <h2>...Loading</h2>

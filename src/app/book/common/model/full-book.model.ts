@@ -12,4 +12,5 @@ export interface FullBookModel {
   id: number;
   description: string;
   pages: number;
+  progress: number;
 }

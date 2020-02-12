@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { BookContract } from '../book/book.contract';
 import { AuthorService } from '../../../../author/common/service/author.service';
 import { FormDataService } from '../../../../form-data/common/service/form-data.service';
-import { RequestAuthorModel } from '../../../../author/common/model/request-author.model';
 import { map } from 'rxjs/operators';
 import { FullBookModel } from '../../model/full-book.model';
 

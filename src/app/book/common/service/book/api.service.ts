@@ -95,6 +95,7 @@ export class ApiService extends BookContract {
       created_at: book.created_at,
       updated_at: book.updated_at,
       description: book.description,
+      progress: book.progress,
       id: book.id,
       title: book.title,
     };

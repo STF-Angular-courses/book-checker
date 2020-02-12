@@ -8,4 +8,5 @@ export interface BookModel {
   id: number;
   description: string;
   pages: number;
+  progress: number;
 }

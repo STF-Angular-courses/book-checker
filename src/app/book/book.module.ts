@@ -18,6 +18,7 @@ import { FormDataModule } from '../form-data/form-data.module';
 import { BookEditComponent } from './book-edit/book-edit.component';
 import { PreloaderModule } from '../preloader/preloader.module';
 import { NewBookFacade } from './common/service/facade/new-book.facade';
+import { ProgressModule } from '../progress/progress.module';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { NewBookFacade } from './common/service/facade/new-book.facade';
     MatSelectModule,
     FormDataModule,
     PreloaderModule,
+    ProgressModule,
   ],
   exports: [
     BookListComponent,

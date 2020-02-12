@@ -1,0 +1,14 @@
+<mat-card>
+  <form [formGroup]="progressForm" (submit)="submit()">
+    <mat-form-field class="example-full-width">
+      <input matInput [formControlName]="'progress'" type="number" placeholder="Progress">
+    </mat-form-field>
+
+    <mat-radio-group [formControlName]="'type'" aria-label="Type">
+      <mat-radio-button [value]="progressType.PAGES">Pages</mat-radio-button>
+      <mat-radio-button [value]="progressType.PERCENTAGE">Percentages</mat-radio-button>
+    </mat-radio-group>
+
+    <button mat-button type="submit" color="primary">Save</button>
+  </form>
+</mat-card>
