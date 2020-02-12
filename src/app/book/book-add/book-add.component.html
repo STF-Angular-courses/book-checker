@@ -7,14 +7,16 @@
     <textarea matInput [formControlName]="'description'" placeholder="Leave a description"></textarea>
   </mat-form-field>
 
-  <mat-form-field *ngIf="authors | async as authorList">
-    <mat-label>Author</mat-label>
-    <mat-select [formControlName]="'author'">
-      <mat-option *ngFor="let author of authorList" [value]="author.id">
-        {{ author | author }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
+  <p>Author:</p>
+  <div style="display: flex; flex-direction: row; flex-wrap: nowrap;">
+    <mat-form-field class="example-full-width" style="margin-right: 10px">
+      <input matInput [formControlName]="'author_name'" placeholder="Name">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input matInput [formControlName]="'author_last_name'" placeholder="Last-name">
+    </mat-form-field>
+  </div>
 
   <mat-form-field *ngIf="categories | async as categoryList">
     <mat-label>Category</mat-label>

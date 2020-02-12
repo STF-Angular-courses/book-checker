@@ -10,6 +10,7 @@ import { FormDataService } from '../../form-data/common/service/form-data.servic
 import { BookContract } from '../common/service/book/book.contract';
 import { ValidationException } from '../common/exception/validation.exception';
 import { ActivatedRoute, Route, Router, RouterEvent, RouterLink } from '@angular/router';
+import { NewBookFacade } from '../common/service/facade/new-book.facade';
 
 @Component({
   selector: 'app-book-add',
@@ -21,59 +22,42 @@ import { ActivatedRoute, Route, Router, RouterEvent, RouterLink } from '@angular
 export class BookAddComponent implements OnInit {
   bookForm!: FormGroup;
   book: FullBookModel;
-  authors: Observable<AuthorModel[]>;
   categories: Observable<CategoryModel[]>;
 
   constructor(
     private formBuilder: FormBuilder,
     private categoryService: CategoryService,
-    private authorService: AuthorService,
     private formDataService: FormDataService,
-    private bookService: BookContract,
+    private newBookFacade: NewBookFacade,
     private router: Router,
   ) {
     this.bookForm = formBuilder.group({
-      title: new FormControl('', [Validators.required]),
-      description: new FormControl('', [Validators.required]),
-      author: new FormControl(undefined, [Validators.required]),
-      category: new FormControl(undefined, [Validators.required]),
-      pages: new FormControl(0, [Validators.required]),
+      title: new FormControl('Title', [Validators.required]),
+      description: new FormControl('Some description', [Validators.required]),
+      author_name: new FormControl('', [Validators.required]),
+      author_last_name: new FormControl('', [Validators.required]),
+      category: new FormControl(2, [Validators.required]),
+      pages: new FormControl(124, [Validators.required]),
       screen: new FormControl(null, [Validators.required]),
     });
   }
 
-  submit() {
+  async submit() {
     if (!this.bookForm.valid) {
       return;
     }
 
     const data = this.formDataService.formGroupToFormData(this.bookForm);
-
-    const result = this.bookService.add(data);
-    result.subscribe(
-      (response) => {
-        console.log(response);
-
-        this.router.navigate(['books/book', response.id]);
-      },
-      err => {
-        if (err instanceof ValidationException) {
-          console.log('some action', err.getErrors().length);
-          return;
-        }
-
-        console.log('some other action');
-      }
-    );
+    const book = await this.newBookFacade.createBookWithAuthor(data);
+    console.log(book);
   }
 
   ngOnInit(): void {
-    this.authors = this.authorService.list();
     this.categories = this.categoryService.list();
   }
 
   changeImage($event: File) {
-    console.log($event)
+    console.log($event);
     this.bookForm.patchValue({
       screen: $event,
     });

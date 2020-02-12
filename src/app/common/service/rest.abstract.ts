@@ -11,6 +11,10 @@ export abstract class RestAbstract<OneElementType> {
     return this.http.get<OneElementType[]>(`${this.prefix}/${this.path}`);
   }
 
+  create(data: FormData) {
+    return this.http.post<OneElementType>(`${this.prefix}/${this.path}`, data);
+  }
+
   get(id: number): Observable<OneElementType> {
     return this.http.get<OneElementType>(`${this.prefix}/${this.path}/${id}`);
   }

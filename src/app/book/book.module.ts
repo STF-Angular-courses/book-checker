@@ -17,6 +17,7 @@ import { ColorPipe } from './common/pipe/color.pipe';
 import { FormDataModule } from '../form-data/form-data.module';
 import { BookEditComponent } from './book-edit/book-edit.component';
 import { PreloaderModule } from '../preloader/preloader.module';
+import { NewBookFacade } from './common/service/facade/new-book.facade';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { PreloaderModule } from '../preloader/preloader.module';
   ],
   providers: [
     BookProvider,
+    NewBookFacade,
   ],
   imports: [
     CommonModule,
