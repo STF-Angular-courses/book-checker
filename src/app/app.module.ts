@@ -7,6 +7,8 @@ import { BookModule } from './book/book.module';
 import { MatButtonModule, MatCardModule, MatListModule } from '@angular/material';
 import { AppRoutingModule } from './routing/app-routing.module';
 import { MatchComponent } from './match.component';
+import { SocketIoModule } from 'ngx-socket-io';
+import { ChatModule } from './chat/chat.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { MatchComponent } from './match.component';
     MatListModule,
     MatButtonModule,
     BookModule,
+    ChatModule,
     AppRoutingModule,
+    SocketIoModule.forRoot({ url: 'http://localhost:3000' })
   ],
   bootstrap: [AppComponent]
 })

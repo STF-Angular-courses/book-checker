@@ -13,8 +13,9 @@ export class BookShowComponent implements OnInit {
 
   constructor(
     private bookService: BookContract,
-    private route: ActivatedRoute
-  ) { }
+    private route: ActivatedRoute,
+  ) {
+  }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {

@@ -5,6 +5,7 @@ import { MatchComponent } from '../match.component';
 import { testMatcher } from './matcher/test.matcher';
 import { BookAddComponent } from '../book/book-add/book-add.component';
 import { BookEditComponent } from '../book/book-edit/book-edit.component';
+import { ChatComponent } from '../chat/chat/chat.component';
 
 export const routes: Routes = [
   {
@@ -38,6 +39,10 @@ export const routes: Routes = [
     data: {
       animation: 'BookShow'
     },
+  },
+  {
+    path: 'chat',
+    component: ChatComponent,
   },
   {
     matcher: testMatcher,

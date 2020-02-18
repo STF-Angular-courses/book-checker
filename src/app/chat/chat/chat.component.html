@@ -1,0 +1,13 @@
+<mat-card>
+  <ul>
+    <li *ngFor="let message of chatService.messages">
+      {{ message }}
+    </li>
+  </ul>
+  <form [formGroup]="chatForm" class="example-form" (submit)="sendMessage()">
+    <mat-form-field class="example-full-width">
+      <textarea matInput [formControlName]="'message'" placeholder="Message"></textarea>
+    </mat-form-field>
+    <button type="submit" mat-button>Send</button>
+  </form>
+</mat-card>
